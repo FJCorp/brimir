@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gemspec
+
 gem 'rails', '~> 4.2.0'
 
 gem 'sass-rails', '~> 5.0.0'
@@ -30,13 +32,6 @@ group :test do
   # for coveralls
   gem 'coveralls'
 end
-
-# Optional PostgreSQL for production
-gem 'pg', group: :postgresql
-# Optional MySQL for production
-gem 'mysql2', group: :mysql
-# Optional SQLite for development
-gem 'sqlite3', group: :sqlite
 
 # authentication
 gem 'devise'
