@@ -16,23 +16,23 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", '>= 4.2.0'
-  s.add_dependency "devise", '~> 0'
-  s.add_dependency "devise_ldap_authenticatable", '~> 0'
-  s.add_dependency "omniauth-google-oauth2", '~> 0'
+  s.add_dependency "devise", '>= 3.5.3'
+  s.add_dependency "devise_ldap_authenticatable", '>= 0.8.5'
+  s.add_dependency "omniauth-google-oauth2", '>= 0.3.1'
   s.add_dependency "cancancan", '>= 1.13.1'
   s.add_dependency "paperclip", '>= 4.3.5'
   s.add_dependency "will_paginate", '>= 3.1.0'
   s.add_dependency "font-awesome-rails", "~> 4.0"
   s.add_dependency "tinymce-rails", '>= 4.1.6'
   s.add_dependency "http_accept_language", '>= 2.0.5'
-  s.add_dependency "rails-i18n", '~> 0'
-  s.add_dependency "devise-i18n", '~> 0'
-  s.add_dependency "timecop", '~> 0'
-  s.add_dependency "select2-rails", '~> 0'
+  s.add_dependency "rails-i18n", '>= 4.0.0'
+  s.add_dependency "devise-i18n", '>= 0.12.1'
+  s.add_dependency "timecop", '>= 0.8.0'
+  s.add_dependency "select2-rails", '>= 4.0.1'
   s.add_dependency "jbuilder", "~> 2.2"
   s.add_dependency "fancybox2-rails", "~> 0.2.8"
-  s.add_dependency "gravatar_image_tag", '~> 0'
-  s.add_dependency "foundation_rails_helper", '~> 0'
+  s.add_dependency "gravatar_image_tag", '>= 1.2.0'
+  s.add_dependency "foundation_rails_helper", '>= 1.1.0'
   s.add_dependency "foundation-rails", '>= 5.5.0'
   s.add_dependency "jquery-rails", '>= 4.1.0'
   s.add_dependency "compass-rails", '>= 2.0.0'
