@@ -1,5 +1,5 @@
 module Brimir
-  class Brimir < ::Rails::Engine
+  class Engine < ::Rails::Engine
     isolate_namespace Brimir
     engine_name 'brimir'
 

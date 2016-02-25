@@ -1,5 +1,5 @@
 class AddDefaultToStatus < ActiveRecord::Migration
   def change
-    add_column :statuses, :default, :boolean, default: false
+    add_column :brimir_statuses, :default, :boolean, default: false
   end
 end

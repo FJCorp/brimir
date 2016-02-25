@@ -1,14 +1,14 @@
 class ReplaceTicketStatusByEnum < ActiveRecord::Migration
-  class OldStatus < ActiveRecord::Base
-    self.table_name = 'statuses'
+  class Brimir::OldStatus < ActiveRecord::Base
+    self.table_name = 'brimir_statuses'
     has_many :tickets, foreign_key: 'status_id'
   end
 
   def change
 
-    add_column :tickets, :status, :integer, null: false, default: 0
+    add_column :brimir_tickets, :status, :integer, null: false, default: 0
 
-    OldStatus.all.each do |status|
+    Brimir::OldStatus.all.each do |status|
       if status.name == 'Deleted'
         new_status = :deleted
       elsif status.name == 'Closed'
@@ -23,9 +23,9 @@ class ReplaceTicketStatusByEnum < ActiveRecord::Migration
       end
     end
 
-    remove_column :tickets, :status_id
-    drop_table :statuses
-    add_index :tickets, :status
+    remove_column :brimir_tickets, :status_id
+    drop_table :brimir_statuses
+    add_index :brimir_tickets, :status
 
   end
 end

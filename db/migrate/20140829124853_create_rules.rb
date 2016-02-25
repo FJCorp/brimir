@@ -1,6 +1,6 @@
 class CreateRules < ActiveRecord::Migration
   def change
-    create_table :rules do |t|
+    create_table :brimir_rules do |t|
       t.string :filter_field
       t.integer :filter_operation, null: false, default: 0
       t.string :filter_value

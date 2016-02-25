@@ -1,10 +1,10 @@
 class RemoveSubAgents < ActiveRecord::Migration
   def up
     # convert sub agents to normal customers
-    User.where.not(incoming_address: nil).each do |user|
+    Brimir::User.where.not(incoming_address: nil).each do |user|
 
-      Ticket.where(to: user.incoming_address).each do |ticket|
-        label = Label.where(name: user.incoming_address).first_or_create!
+      Brimir::Ticket.where(to: user.incoming_address).each do |ticket|
+        label = Brimir::Label.where(name: user.incoming_address).first_or_create!
 
         unless ticket.label_ids.include?(label.id)
           ticket.labels << label
@@ -18,12 +18,12 @@ class RemoveSubAgents < ActiveRecord::Migration
       user.save! validates: false
     end
 
-    remove_column :users, :incoming_address
-    remove_column :tickets, :to
+    remove_column :brimir_users, :incoming_address
+    remove_column :brimir_tickets, :to
   end
 
   def down
-    add_column :users, :incoming_address, :string
-    add_column :tickets, :to, :string
+    add_column :brimir_users, :incoming_address, :string
+    add_column :brimir_tickets, :to, :string
   end
 end

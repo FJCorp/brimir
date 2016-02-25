@@ -1,6 +1,6 @@
 class CreateStatuses < ActiveRecord::Migration
   def change
-    create_table :statuses do |t|
+    create_table :brimir_statuses do |t|
       t.string :name
 
       t.timestamps
@@ -8,10 +8,10 @@ class CreateStatuses < ActiveRecord::Migration
 
     end
 
-    change_table :tickets do |t|
+    change_table :brimir_tickets do |t|
       t.integer :status_id
     end
 
-    add_index :tickets, :status_id
+    add_index :brimir_tickets, :status_id
   end
 end

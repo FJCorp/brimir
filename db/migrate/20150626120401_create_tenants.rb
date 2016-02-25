@@ -1,12 +1,12 @@
 class CreateTenants < ActiveRecord::Migration
   def up
-    if Tenant.postgresql?
-      old = Tenant.connection.schema_search_path
-      Tenant.connection.schema_search_path = 'public'
+    if Brimir::Tenant.postgresql?
+      old = Brimir::Tenant.connection.schema_search_path
+      Brimir::Tenant.connection.schema_search_path = 'public'
     end
 
-    unless table_exists? :tenants
-      create_table :tenants do |t|
+    unless table_exists? :brimir_tenants
+      create_table :brimir_tenants do |t|
         t.string :domain
         t.string :from
 
@@ -14,23 +14,23 @@ class CreateTenants < ActiveRecord::Migration
       end
     end
 
-    if Tenant.postgresql?
-      Tenant.connection.schema_search_path = old
+    if Brimir::Tenant.postgresql?
+      Brimir::Tenant.connection.schema_search_path = old
     end
   end
 
   def down
-    if Tenant.postgresql?
-      old = Tenant.connection.schema_search_path
-      Tenant.connection.schema_search_path = 'public'
+    if Brimir::Tenant.postgresql?
+      old = Brimir::Tenant.connection.schema_search_path
+      Brimir::Tenant.connection.schema_search_path = 'public'
     end
 
-    if table_exists? :tenants
-      drop_table :tenants
+    if table_exists? :brimir_tenants
+      drop_table :brimir_tenants
     end
 
-    if Tenant.postgresql?
-      Tenant.connection.schema_search_path = old
+    if Brimir::Tenant.postgresql?
+      Brimir::Tenant.connection.schema_search_path = old
     end
   end
 end

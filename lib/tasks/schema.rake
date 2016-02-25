@@ -2,8 +2,8 @@ namespace :brimir do
 
   # migrate all tenant schema
   task migrate: :environment do
-    if Tenant.connection.table_exists? :tenants
-      schemas = Tenant.pluck(:domain)
+    if Brimir::Tenant.connection.table_exists? :tenants
+      schemas = Brimir::Tenant.pluck(:domain)
 
       version = ENV['VERSION'] ? ENV['VERSION'].to_i : nil
 
@@ -12,12 +12,12 @@ namespace :brimir do
       schemas.each do |schema|
         print "Migrating #{schema}\n"
 
-        Tenant.current_domain = schema
+        Brimir::Tenant.current_domain = schema
         ActiveRecord::Migrator.migrate('db/migrate', version)
 
       end
 
-      Tenant.current_domain = last
+      Brimir::Tenant.current_domain = last
 
       print "Migrating #{last}\n"
     end

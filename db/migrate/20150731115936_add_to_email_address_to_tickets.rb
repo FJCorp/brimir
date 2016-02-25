@@ -1,7 +1,7 @@
 class AddToEmailAddressToTickets < ActiveRecord::Migration
   def change
-    add_column :tickets, :to_email_address_id, :integer
+    add_column :brimir_tickets, :to_email_address_id, :integer
 
-    add_index :tickets, :to_email_address_id
+    add_index :brimir_tickets, :to_email_address_id
   end
 end

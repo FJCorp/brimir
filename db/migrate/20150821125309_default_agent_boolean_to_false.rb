@@ -1,6 +1,6 @@
 class DefaultAgentBooleanToFalse < ActiveRecord::Migration
   def change
-    User.where(agent: nil).update_all(agent: false)
-    change_column :users, :agent, :boolean, default: false, null: false
+    Brimir::User.where(agent: nil).update_all(agent: false)
+    change_column :brimir_users, :agent, :boolean, default: false, null: false
   end
 end

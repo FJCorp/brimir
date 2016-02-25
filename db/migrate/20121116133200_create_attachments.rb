@@ -1,11 +1,11 @@
 class CreateAttachments < ActiveRecord::Migration
   def change
-    create_table :attachments do |t|
+    create_table :brimir_attachments do |t|
       t.references :attachable
       t.string :attachable_type
 
       t.timestamps
     end
-    add_index :attachments, :attachable_id
+    add_index :brimir_attachments, :attachable_id
   end
 end

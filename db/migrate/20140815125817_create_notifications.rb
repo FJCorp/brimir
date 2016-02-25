@@ -1,16 +1,16 @@
 class CreateNotifications < ActiveRecord::Migration
   def change
-    create_table :notifications do |t|
+    create_table :brimir_notifications do |t|
       t.references :notifiable, polymorphic: true, index: true
       t.references :user, index: true
 
       t.timestamps
     end
-    add_index :notifications, [:notifiable_id, :notifiable_type, :user_id],
+    add_index :brimir_notifications, [:notifiable_id, :notifiable_type, :user_id],
         unique: true,
         name: :unique_notification
 
-    Reply.all.each do |reply|
+    Brimir::Reply.all.each do |reply|
       addresses = []
 
       addresses += reply.to.to_s.split(',')
@@ -18,7 +18,7 @@ class CreateNotifications < ActiveRecord::Migration
       addresses += reply.bcc.to_s.split(',')
 
       addresses.each do |address|
-        u = User.where(email: address.strip).first_or_initialize
+        u = Brimir::User.where(email: address.strip).first_or_initialize
 
         if u.new_record?
           password_length = 12
@@ -36,9 +36,9 @@ class CreateNotifications < ActiveRecord::Migration
       reply.save!
     end
 
-    remove_column :replies, :to
-    remove_column :replies, :cc
-    remove_column :replies, :bcc
+    remove_column :brimir_replies, :to
+    remove_column :brimir_replies, :cc
+    remove_column :brimir_replies, :bcc
 
   end
 end

@@ -1,13 +1,13 @@
 class TicketPriorityToEnum < ActiveRecord::Migration
-  class OldPriority < ActiveRecord::Base
-    self.table_name = 'priorities'
+  class Brimir::OldPriority < ActiveRecord::Base
+    self.table_name = 'brimir_priorities'
     has_many :tickets, foreign_key: 'priority_id'
   end
 
   def change
-    add_column :tickets, :priority, :integer, null: false, default: 0
+    add_column :brimir_tickets, :priority, :integer, null: false, default: 0
 
-    OldPriority.all.each do |priority|
+    Brimir::OldPriority.all.each do |priority|
       if priority.name == 'High'
         new_priority = :high
       elsif priority.name == 'Medium'
@@ -24,9 +24,9 @@ class TicketPriorityToEnum < ActiveRecord::Migration
       end
     end
 
-    remove_column :tickets, :priority_id
-    drop_table :priorities
-    add_index :tickets, :priority
+    remove_column :brimir_tickets, :priority_id
+    drop_table :brimir_priorities
+    add_index :brimir_tickets, :priority
 
   end
 

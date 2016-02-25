@@ -1,6 +1,6 @@
 class CreateEmailAddresses < ActiveRecord::Migration
   def change
-    create_table :email_addresses do |t|
+    create_table :brimir_email_addresses do |t|
       t.string :email
       t.boolean :default, default: false, nil: false
 

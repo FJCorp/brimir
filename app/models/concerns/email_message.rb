@@ -21,11 +21,11 @@ module EmailMessage
     has_many :attachments, as: :attachable, dependent: :destroy
     accepts_nested_attributes_for :attachments, allow_destroy: true
 
-    has_many :attached_files, -> { where(content_id: nil) }, as: :attachable, class_name: 'Attachment'
-    has_many :inline_files, -> { where.not(content_id: nil) }, as: :attachable, class_name: 'Attachment'
+    has_many :attached_files, -> { where(content_id: nil) }, as: :attachable, class_name: 'Brimir::Attachment'
+    has_many :inline_files, -> { where.not(content_id: nil) }, as: :attachable, class_name: 'Brimir::Attachment'
 
     has_attached_file :raw_message,
-        path: Tenant.files_path
+        path: Brimir::Tenant.files_path
 
     do_not_validate_attachment_file_type :raw_message
   end

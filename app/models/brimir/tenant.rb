@@ -20,7 +20,7 @@ module Brimir
     end
 
     # force tenants table from postgresql public schema
-    self.table_name = 'public.tenants' if postgresql?
+    self.table_name = 'public.brimir_tenants' if postgresql?
 
     def self.current_domain=(domain)
       # new tenant?

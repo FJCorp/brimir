@@ -1,17 +1,17 @@
 if ENV['CLEAN'].present?
-  User.delete_all
-  Label.delete_all
-  Rule.delete_all
-  Ticket.delete_all
-  Reply.delete_all
-  Attachment.destroy_all
+  Brimir::User.delete_all
+  Brimir::Label.delete_all
+  Brimir::Rule.delete_all
+  Brimir::Ticket.delete_all
+  Brimir::Reply.delete_all
+  Brimir::Attachment.destroy_all
 end
 
-agent = User.where(email: 'agent@getbrimir.com').first_or_create({ email: 'agent@getbrimir.com', password: 'testtest', password_confirmation: 'testtest' })
+agent = Brimir::User.where(email: 'agent@getbrimir.com').first_or_create({ email: 'agent@getbrimir.com', password: 'testtest', password_confirmation: 'testtest' })
 agent.agent = true
 agent.save!
 
-customer = User.where(email: 'customer@getbrimir.com').first_or_create({ email: 'customer@getbrimir.com', password: 'testtest', password_confirmation: 'testtest' })
+customer = Brimir::User.where(email: 'customer@getbrimir.com').first_or_create({ email: 'customer@getbrimir.com', password: 'testtest', password_confirmation: 'testtest' })
 customer.save!
 
 labels = [
@@ -21,7 +21,7 @@ labels = [
     'change-request',
 ]
 
-customer.labels << Label.where(name: labels.sample).first_or_create!
+customer.labels << Brimir::Label.where(name: labels.sample).first_or_create!
 
 customers = [
     'alice@example.com',
@@ -62,21 +62,21 @@ content = [
     from = customer.email
   end
 
-  ticket = Ticket.create!(
+  ticket = Brimir::Ticket.create!(
     from: from,
     subject: subjects.sample,
     content: '<html><head></head><body><p>' +
         content[0, 1 + (Random.rand() * 3).round].join('</p><p>') +
         '</p></body></html>',
     assignee: assignee,
-    priority: Ticket.priorities.keys.sample,
-    status: Ticket.statuses.keys.sample,
+    priority: Brimir::Ticket.priorities.keys.sample,
+    status: Brimir::Ticket.statuses.keys.sample,
   )
 
   ticket.set_default_notifications!
 
   if Random.rand() > 0.5
-    ticket.labels << Label.where(name: labels.sample).first_or_create!
+    ticket.labels << Brimir::Label.where(name: labels.sample).first_or_create!
   end
 
   (Random.rand() * 4).round.times do

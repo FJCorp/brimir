@@ -1,7 +1,7 @@
 class AddAddressFieldsToReply < ActiveRecord::Migration
   def change
-    add_column :replies, :to, :string
-    add_column :replies, :cc, :string
-    add_column :replies, :bcc, :string
+    add_column :brimir_replies, :to, :string
+    add_column :brimir_replies, :cc, :string
+    add_column :brimir_replies, :bcc, :string
   end
 end
